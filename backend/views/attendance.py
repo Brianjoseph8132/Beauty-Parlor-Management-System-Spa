@@ -8,7 +8,7 @@ from decorator import receptionist_required, admin_required
 from datetime import timedelta
 import calendar
 from sqlalchemy import func, case
-from backports.zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo
 
 attendance_bp = Blueprint("attendance_bp", __name__)
 

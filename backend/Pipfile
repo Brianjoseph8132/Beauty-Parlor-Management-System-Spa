@@ -9,18 +9,18 @@ flask-mail = "*"
 flask-migrate = "*"
 flask-jwt-extended = "*"
 email-validator = "*"
-python-dotenv = "*"
 apscheduler = "*"
 flask-cors = "*"
 psycopg2-binary = "*"
-sqlalchemy-serializer = "*"
 google-auth = "*"
 requests = "*"
 reportlab = "*"
-"backports.zoneinfo" = "*"
 gunicorn = "*"
+flask-sqlalchemy = "*"
+sqlalchemy-serializer = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"
+python_full_version = "3.11.15"
