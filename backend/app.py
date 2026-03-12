@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 # migration initialization
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///parlor.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://parlordb_9ovm_user:OPVKWowEoY4WkURHtHk4K6jYwPgZLnkb@dpg-d6pgpitm5p6s73a49pd0-a.oregon-postgres.render.com/parlordb_9ovm'
 migrate = Migrate(app, db)
 db.init_app(app)
 
