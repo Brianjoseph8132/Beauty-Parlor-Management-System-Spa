@@ -30,7 +30,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/allergies", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/allergies", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const EmployeeProvider = ({children}) => {
     const deleteallergy = (allergy_id) => {
         toast.loading("Deleting Allergy...");
 
-        fetch(`http://127.0.0.1:5000/allergy/${allergy_id}`, {
+        fetch(`https://beauty-parlor-management-system-spa.onrender.com/allergy/${allergy_id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const EmployeeProvider = ({children}) => {
         toast.loading("Adding Allergy...");
 
         try {
-            const resp = await fetch("http://127.0.0.1:5000/allergy", {
+            const resp = await fetch("https://beauty-parlor-management-system-spa.onrender.com/allergy", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export const EmployeeProvider = ({children}) => {
     const updateAllergy = (name, allergy_id) => {
         toast.loading("Updating Allergy...");
 
-        fetch(`http://127.0.0.1:5000/allergies/${allergy_id}`, {
+        fetch(`https://beauty-parlor-management-system-spa.onrender.com/allergies/${allergy_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -152,7 +152,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-                "http://127.0.0.1:5000/reminders/my-upcoming",
+                "https://beauty-parlor-management-system-spa.onrender.com/reminders/my-upcoming",
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -203,7 +203,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/employees", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/employees", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -225,7 +225,7 @@ export const EmployeeProvider = ({children}) => {
     // Get my employee profile (for beauticians)
     const getMyEmployeeProfile = async () => {
         try {
-            const res = await fetch("http://127.0.0.1:5000/employee-profile", {
+            const res = await fetch("https://beauty-parlor-management-system-spa.onrender.com/employee-profile", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -251,7 +251,7 @@ export const EmployeeProvider = ({children}) => {
     // Get employee (get by id)
     const MyEmployeeProfile = async (employee_id) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/employee-profile/${employee_id}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/employee-profile/${employee_id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -288,7 +288,7 @@ export const EmployeeProvider = ({children}) => {
                 imageUrl = upload.secure_url
             }
 
-            const res = await fetch("http://127.0.0.1:5000/employee", {
+            const res = await fetch("https://beauty-parlor-management-system-spa.onrender.com/employee", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -349,7 +349,7 @@ export const EmployeeProvider = ({children}) => {
                     ...(imageUrl && { employee_profile_picture: imageUrl })
                 }
     
-                const res = await fetch(`http://127.0.0.1:5000/employees/${employee_id}`, {
+                const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/employees/${employee_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -378,7 +378,7 @@ export const EmployeeProvider = ({children}) => {
     const deleteEmployee = (employee_id) => {
         const toastId = toast.loading("Deleting employee...");
         
-        fetch(`http://127.0.0.1:5000/employees/${employee_id}`, {
+        fetch(`https://beauty-parlor-management-system-spa.onrender.com/employees/${employee_id}`, {
             method: "DELETE",
             headers: {
             "Content-type": "application/json",
@@ -412,7 +412,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/beautician/bookings", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/beautician/bookings", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -445,7 +445,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            `http://127.0.0.1:5000/bookings/start/${bookingId}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/bookings/start/${bookingId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -508,7 +508,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            `http://127.0.0.1:5000/bookings/complete/${bookingId}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/bookings/complete/${bookingId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -570,7 +570,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/attendance", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/attendance", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -593,7 +593,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            `http://127.0.0.1:5000/attendance/check-in/${employeeId}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/attendance/check-in/${employeeId}`,
             {
                 method: "POST",
                 headers: {
@@ -629,7 +629,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            `http://127.0.0.1:5000/attendance/check-out/${employeeId}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/attendance/check-out/${employeeId}`,
             {
                 method: "POST",
                 headers: {
@@ -667,7 +667,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            `http://127.0.0.1:5000/attendance/absent/${employeeId}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/attendance/absent/${employeeId}`,
             {
                 method: "POST",
                 headers: {
@@ -702,7 +702,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/attendance/today-summary", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/attendance/today-summary", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -723,7 +723,7 @@ export const EmployeeProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/attendance/scheduled-today", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/attendance/scheduled-today", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -754,7 +754,7 @@ export const EmployeeProvider = ({children}) => {
 
         try {
             const res = await fetch(
-            "http://127.0.0.1:5000/attendance/today-records",
+            "https://beauty-parlor-management-system-spa.onrender.com/attendance/today-records",
             {
                 method: "GET",
                 headers: {

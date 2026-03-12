@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
     const login = (email, password, rememberMe) => 
         {
             toast.loading("Logging you in ... ")
-            fetch("http://127.0.0.1:5000/login",{
+            fetch("https://beauty-parlor-management-system-spa.onrender.com/login",{
                 method:"POST",
                 headers: {
                     'Content-type': 'application/json',
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
     
                     setAuthToken(response.access_token)
     
-                    fetch('http://127.0.0.1:5000/current_user',{
+                    fetch('https://beauty-parlor-management-system-spa.onrender.com/current_user',{
                         method:"GET",
                         headers: {
                             'Content-type': 'application/json',
@@ -74,7 +74,7 @@ export const UserProvider = ({ children }) => {
     const login_with_google = (googleToken) => {
         toast.loading("Logging you in ... ");
 
-        fetch("http://127.0.0.1:5000/login_with_google", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/login_with_google", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export const UserProvider = ({ children }) => {
                 sessionStorage.setItem("token", response.access_token);
                 setAuthToken(response.access_token);
 
-                fetch("http://127.0.0.1:5000/current_user", {
+                fetch("https://beauty-parlor-management-system-spa.onrender.com/current_user", {
                     headers: {
                         "Authorization": `Bearer ${response.access_token}`,
                     },
@@ -124,7 +124,7 @@ export const UserProvider = ({ children }) => {
     const logout = () => 
     {
         toast.loading("Logging out ... ")
-        fetch("http://127.0.0.1:5000/logout",{
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/logout",{
             method:"DELETE",
             headers: {
                 'Content-type': 'application/json',
@@ -163,7 +163,7 @@ export const UserProvider = ({ children }) => {
     // {
     //     console.log("Current user fcn ",authToken);
         
-    //     fetch('http://127.0.0.1:5000/current_user',{
+    //     fetch('https://beauty-parlor-management-system-spa.onrender.com/current_user',{
     //         method:"GET",
     //         headers: {
     //             'Content-type': 'application/json',
@@ -184,7 +184,7 @@ export const UserProvider = ({ children }) => {
         // If no access token, try refresh
         if (!accessToken) {
             try {
-                const refreshRes = await fetch("http://127.0.0.1:5000/refresh", {
+                const refreshRes = await fetch("https://beauty-parlor-management-system-spa.onrender.com/refresh", {
                     method: "POST",
                     credentials: "include"
                 });
@@ -208,7 +208,7 @@ export const UserProvider = ({ children }) => {
 
         // Fetch current user with access token
         try {
-            const userRes = await fetch("http://127.0.0.1:5000/current_user", {
+            const userRes = await fetch("https://beauty-parlor-management-system-spa.onrender.com/current_user", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export const UserProvider = ({ children }) => {
     // Add User
     const addUser = (username, email, password, profile_picture) => {
         toast.loading("Registering ... ");
-        fetch("http://127.0.0.1:5000/user", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/user", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -269,7 +269,7 @@ export const UserProvider = ({ children }) => {
         console.log("Updating user:", { username, email, password, profile_picture });
         toast.loading("Updating user...");
         
-        fetch("http://127.0.0.1:5000/update_profile", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/update_profile", {
             method: "PUT", 
             headers: {
                 'Content-type': 'application/json',

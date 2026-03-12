@@ -27,7 +27,7 @@ export const ProductProvider = ({children}) => {
 
     //===========Products=========
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/products/inventory", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/products/inventory", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const ProductProvider = ({children}) => {
                 imageUrl = upload.secure_url
             }
 
-            const res = await fetch("http://127.0.0.1:5000/products", {
+            const res = await fetch("https://beauty-parlor-management-system-spa.onrender.com/products", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export const ProductProvider = ({children}) => {
         try {
             toast.loading("Deleting Product...");
             
-            const res = await fetch(`http://127.0.0.1:5000/products/delete/${productId}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/products/delete/${productId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${authToken}`,
@@ -141,7 +141,7 @@ export const ProductProvider = ({children}) => {
                 ...(imageUrl && { product_image: imageUrl })
             }
 
-            const res = await fetch(`http://127.0.0.1:5000/products/${product_id}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/products/${product_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -172,7 +172,7 @@ export const ProductProvider = ({children}) => {
         try {
             toast.loading("Restocking product...");
 
-            const res = await fetch(`http://127.0.0.1:5000/products/restock/${productId}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/products/restock/${productId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -206,7 +206,7 @@ export const ProductProvider = ({children}) => {
         try {
             toast.loading("Processing stock-out...");
 
-            const res = await fetch(`http://127.0.0.1:5000/products/stock-out/${productId}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/products/stock-out/${productId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -244,7 +244,7 @@ export const ProductProvider = ({children}) => {
 
     const fetchProductById = async (id) => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/products/${id}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/products/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

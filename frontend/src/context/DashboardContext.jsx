@@ -24,7 +24,7 @@ export const DashboardProvider = ({children}) => {
             setError(null);
 
             const res = await fetch(
-                `http://127.0.0.1:5000/employee-performance?period=${selectedPeriod.toLowerCase()}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/employee-performance?period=${selectedPeriod.toLowerCase()}`,
                 {
                     method: "GET",
                     headers: {
@@ -79,7 +79,7 @@ export const DashboardProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/admin/clients", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/admin/clients", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -108,7 +108,7 @@ export const DashboardProvider = ({children}) => {
 
         try {
             const response = await fetch(
-                "http://127.0.0.1:5000/send-email/all-clients",
+                "https://beauty-parlor-management-system-spa.onrender.com/send-email/all-clients",
                 {
                     method: "POST",
                     headers: {
@@ -152,7 +152,7 @@ export const DashboardProvider = ({children}) => {
 
         try {
             const response = await fetch(
-                `http://127.0.0.1:5000/send-email/client/${encodeURIComponent(username)}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/send-email/client/${encodeURIComponent(username)}`,
                 {
                     method: "POST",
                     headers: {
@@ -200,7 +200,7 @@ export const DashboardProvider = ({children}) => {
 
         try {
             const response = await fetch(
-                `http://127.0.0.1:5000/admin/users/${userId}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/admin/users/${userId}`,
                 {
                     method: "DELETE",
                     headers: {

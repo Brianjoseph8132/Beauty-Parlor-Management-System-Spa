@@ -16,7 +16,7 @@ export const ServiceProvider = ({ children }) => {
 
 //   ===============Categories============
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/categories", {
+    fetch("https://beauty-parlor-management-system-spa.onrender.com/categories", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export const ServiceProvider = ({ children }) => {
     const deleteCategory = (categoryName) => {
         toast.loading("Deleting Category...");
 
-        fetch(`http://127.0.0.1:5000/categories/name/${encodeURIComponent(categoryName)}`, {
+        fetch(`https://beauty-parlor-management-system-spa.onrender.com/categories/name/${encodeURIComponent(categoryName)}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export const ServiceProvider = ({ children }) => {
     const addCategory = (name) => {
         toast.loading("Adding Category...");
 
-        fetch("http://127.0.0.1:5000/category", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/category", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export const ServiceProvider = ({ children }) => {
     const updateCategory = (currentName, newName) => {
         toast.loading("Updating Category...");
 
-        fetch(`http://127.0.0.1:5000/category/name/${encodeURIComponent(currentName)}`, {
+        fetch(`https://beauty-parlor-management-system-spa.onrender.com/category/name/${encodeURIComponent(currentName)}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export const ServiceProvider = ({ children }) => {
 
     // ==================Services=====================
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/services", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/services", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -163,7 +163,7 @@ export const ServiceProvider = ({ children }) => {
                 imageUrl = upload.secure_url
             }
 
-            const res = await fetch("http://127.0.0.1:5000/service", {
+            const res = await fetch("https://beauty-parlor-management-system-spa.onrender.com/service", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -198,7 +198,7 @@ export const ServiceProvider = ({ children }) => {
 
     // Fetch Service by ID
     const getServiceById = (service_id) => {
-        return fetch(`http://127.0.0.1:5000/service/${service_id}`, {
+        return fetch(`https://beauty-parlor-management-system-spa.onrender.com/service/${service_id}`, {
             method: "GET",
             headers: {
                 'Content-type': 'application/json',
@@ -240,7 +240,7 @@ export const ServiceProvider = ({ children }) => {
                 ...(imageUrl && { image: imageUrl })
             }
 
-            const res = await fetch(`http://127.0.0.1:5000/services/${service_id}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/services/${service_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -271,7 +271,7 @@ export const ServiceProvider = ({ children }) => {
         try {
             toast.loading("Deleting Service...");
             
-            const res = await fetch(`http://127.0.0.1:5000/service-del/${service_id}`, {
+            const res = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/service-del/${service_id}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
@@ -304,7 +304,7 @@ export const ServiceProvider = ({ children }) => {
         
         try {
             const response = await fetch(
-                `http://127.0.0.1:5000/receipts/${bookingId}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/receipts/${bookingId}`,
                 {
                     method: 'GET',
                     headers: {

@@ -29,7 +29,7 @@ export const BookingProvider = ({children}) => {
         if (!serviceId || !date) return;
 
         fetch(
-            `http://127.0.0.1:5000/available-slots?service_id=${serviceId}&date=${date}`,
+            `https://beauty-parlor-management-system-spa.onrender.com/available-slots?service_id=${serviceId}&date=${date}`,
             {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
@@ -58,7 +58,7 @@ export const BookingProvider = ({children}) => {
 
     // ==============Booking ==============
     const createBooking = ({ serviceId, date, startTime, employeeId }) => {
-        fetch("http://127.0.0.1:5000/book", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/book", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export const BookingProvider = ({children}) => {
             params.append('employee_id', employeeId);
         }
 
-        const response = await fetch(`http://127.0.0.1:5000/bookings/preview?${params.toString()}`, {
+        const response = await fetch(`https://beauty-parlor-management-system-spa.onrender.com/bookings/preview?${params.toString()}`, {
             method: 'GET',
             headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ export const BookingProvider = ({children}) => {
     useEffect(() => {
         if (!authToken) return;
 
-        fetch("http://127.0.0.1:5000/bookings", {
+        fetch("https://beauty-parlor-management-system-spa.onrender.com/bookings", {
             headers: {
             Authorization: `Bearer ${authToken}`,
             },
@@ -174,7 +174,7 @@ export const BookingProvider = ({children}) => {
 
         try {
             const res = await fetch(
-                `http://127.0.0.1:5000/bookings/cancel/${bookingId}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/bookings/cancel/${bookingId}`,
                 {
                     method: "PATCH",
                     headers: {
@@ -246,7 +246,7 @@ export const BookingProvider = ({children}) => {
             };
 
             const res = await fetch(
-                `http://127.0.0.1:5000/bookings/reschedule/${bookingId}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/bookings/reschedule/${bookingId}`,
                 {
                     method: "PATCH",
                     headers: {

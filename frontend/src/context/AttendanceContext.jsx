@@ -17,7 +17,7 @@ export const AttendanceProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await fetch(
-                `http://127.0.0.1:5000/admin/employee-attendance?period=${selectedPeriod.toLowerCase()}`,
+                `https://beauty-parlor-management-system-spa.onrender.com/admin/employee-attendance?period=${selectedPeriod.toLowerCase()}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
