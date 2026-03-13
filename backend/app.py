@@ -16,7 +16,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 
-CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+CORS(
+    app,
+    supports_credentials=True,
+    resources={r"/*": {"origins": "http://localhost:5173"}}
+)
 # migration initialization
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://parlordb_9ovm_user:OPVKWowEoY4WkURHtHk4K6jYwPgZLnkb@dpg-d6pgpitm5p6s73a49pd0-a.oregon-postgres.render.com/parlordb_9ovm'
 migrate = Migrate(app, db)
@@ -45,7 +49,7 @@ app.config['MAIL_DEFAULT_SENDER'] = "ashley.testingmoringa@gmail.com"
 mail = Mail(app)
 
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies"]
-app.config["JWT_COOKIE_SECURE"] = False  
+app.config["JWT_COOKIE_SECURE"] = True 
 app.config["JWT_COOKIE_SAMESITE"] = "Lax"
 app.config["JWT_COOKIE_CSRF_PROTECT"] = False
 
