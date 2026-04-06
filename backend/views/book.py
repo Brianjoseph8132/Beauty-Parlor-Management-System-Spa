@@ -13,10 +13,19 @@ import io
 from .receipt import generate_receipt_pdf
 from sqlalchemy.orm import joinedload
 from decorator import beautician_required
+from zoneinfo import ZoneInfo
 # from decorator import admin_required
 
 
 booking_bp = Blueprint("booking_bp", __name__)
+
+NAIROBI_TZ = ZoneInfo("Africa/Nairobi")
+UTC_TZ = ZoneInfo("UTC")
+
+def to_nairobi(dt):
+    if not dt:
+        return None
+    return dt.astimezone(NAIROBI_TZ)
 
 
 @booking_bp.route("/book", methods=["POST"])
@@ -507,10 +516,10 @@ def available_slots():
 @jwt_required()
 def complete_service(booking_id):
     current_user_id = int(get_jwt_identity())
-    user = User.query.get(int(get_jwt_identity()))
+    user = User.query.get(current_user_id)
 
-    if not user.is_beautician:
-        return jsonify({"error": "Access denied"}), 403 
+    if not user or not user.is_beautician:
+        return jsonify({"error": "Access denied"}), 403  
 
     booking = Booking.query.get_or_404(booking_id)
 
@@ -588,39 +597,44 @@ We look forward to serving you again.
 
 
 
-
-# Started
+# Start
 @booking_bp.route("/bookings/start/<int:booking_id>", methods=["PATCH"])
 @jwt_required()
 def start_service(booking_id):
     current_user_id = int(get_jwt_identity())
-    print("JWT USER:", current_user_id)
-    user = User.query.get(get_jwt_identity())
-    print("IS BEAUTICIAN:", user.is_beautician)
+    user = User.query.get(current_user_id)
 
-    if not user.is_beautician:
+    # Auth check
+    if not user or not user.is_beautician:
         return jsonify({"error": "Access denied"}), 403  
 
     booking = Booking.query.get_or_404(booking_id)
-    print("BOOKING EMPLOYEE:", booking.employee.user_id)
 
-    # Only allow if currently confirmed
-    if booking.status != "confirmed":
-        return jsonify({"error": "Booking is not confirmed and cannot be started"}), 400
-
-    # Only the assigned employee can start the service
+    # Authorization
     if not booking.employee or booking.employee.user_id != current_user_id:
         return jsonify({"error": "You are not authorized to start this booking"}), 403
 
-    # Check if the appointment time has arrived (prevent starting too early)
-    now = datetime.now()
-    appointment_start = datetime.combine(booking.booking_date, booking.start_time)
-    if now < appointment_start - timedelta(minutes=15):  # e.g., allow 15 min early
+    # Prevent duplicate start
+    if booking.status == "in_progress":
+        return jsonify({"error": "Service already started"}), 400
+
+    # Status validation
+    if booking.status not in ["confirmed", "rescheduled"]:
+        return jsonify({"error": "Booking cannot be started"}), 400
+
+    # Time check (Nairobi timezone)
+    now = datetime.now(NAIROBI_TZ)
+    appointment_start = datetime.combine(
+        booking.booking_date,
+        booking.start_time
+    ).replace(tzinfo=NAIROBI_TZ)
+
+    if now < appointment_start - timedelta(minutes=15):
         return jsonify({"error": "Cannot start service too early"}), 400
 
-    # Update status
+    # Update
     booking.status = "in_progress"
-    booking.started_at = datetime.utcnow()  # Nice to track when it actually started
+    booking.started_at = datetime.now(UTC_TZ)
 
     db.session.commit()
 
