@@ -522,6 +522,7 @@ def complete_service(booking_id):
         return jsonify({"error": "Access denied"}), 403  
 
     booking = Booking.query.get_or_404(booking_id)
+    print("STATUS", booking.status)
 
     # Only allow if booking is in progress
     if booking.status != "in_progress":
@@ -534,22 +535,20 @@ def complete_service(booking_id):
     # Update booking
     booking.status = "completed"
     booking.completed_by = booking.employee.full_name
-    booking.completed_at = datetime.utcnow()
+    booking.completed_at = datetime.now(UTC_TZ)
 
     db.session.commit()
 
-    # Get customer
-    customer = booking.user  # assumes relationship exists
-
-    # Generate PDF receipt
+    # Generate PDF & send email
+    customer = booking.user
     pdf_buffer = generate_receipt_pdf(booking, customer)
-
-    # Send receipt email
+    receipt_sent = False
     try:
         send_receipt_email(customer, booking, pdf_buffer)
+        receipt_sent = True
     except Exception as e:
-        # Log error but do NOT fail completion
         print("Receipt email failed:", str(e))
+
 
     return jsonify({
         "success": "Service completed successfully",
@@ -579,7 +578,7 @@ Please find your receipt attached.
 Service: {booking.service.title}
 Employee: {booking.employee.full_name}
 Date: {booking.booking_date.strftime('%d %b %Y')} | Time: {booking.start_time.strftime('%H:%M')}
-Amount Paid: R{booking.price:.2f}
+Amount Paid: KSH{booking.price:.2f}
 
 We look forward to serving you again.
 
