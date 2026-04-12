@@ -25,7 +25,7 @@ CORS(
     ]}}
 )
 # migration initialization
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://parlordb_9ovm_user:OPVKWowEoY4WkURHtHk4K6jYwPgZLnkb@dpg-d6pgpitm5p6s73a49pd0-a.oregon-postgres.render.com/parlordb_9ovm'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://beautydb_ddg3_user:hQlEACgE2wVYDxBgGKqI1HTVRsiRzTFr@dpg-d7dtq8741pts73a9pk40-a.oregon-postgres.render.com/beautydb_ddg3'
 migrate = Migrate(app, db)
 db.init_app(app)
 
