@@ -49,7 +49,7 @@ const Hero = () => {
             Experience a seamless, elegant, and modern beauty management system designed to bring your business to life.
           </motion.p>
           
-          <motion.button 
+          {/* <motion.button 
             className="bg-[#D4AA7D] text-[#272727] px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-semibold hover:bg-[#EFD09E] transition"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -58,7 +58,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             Book Now
-          </motion.button>
+          </motion.button> */}
         </div>
       </div>
     </section>
